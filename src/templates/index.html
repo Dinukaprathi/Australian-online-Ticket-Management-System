@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to AOTMS{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1 class="display-4 mb-4 animated-heading">Welcome to Australian Open Ticket Management System</h1>
+            <p class="lead mb-4">Your one-stop solution for managing Australian Open 2026 tickets.</p>
+            
+            {% if current_user.is_authenticated %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Purchase Tickets</h5>
+                                <p class="card-text">Get your tickets for the Australian Open 2026.</p>
+                                <a href="{{ url_for('purchase_ticket') }}" class="btn btn-primary">Buy Tickets</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">View My Tickets</h5>
+                                <p class="card-text">Check your purchased tickets and their status.</p>
+                                <a href="{{ url_for('view_tickets') }}" class="btn btn-primary">View Tickets</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Login</h5>
+                                <p class="card-text">Already have an account? Login to manage your tickets.</p>
+                                <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Register</h5>
+                                <p class="card-text">New to AOTMS? Create an account to get started.</p>
+                                <a href="{{ url_for('register') }}" class="btn btn-primary">Register</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<footer class="footer mt-auto py-4 bg-light border-top">
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <div class="mb-2 mb-md-0">
+      <a href="{{ url_for('index') }}" class="footer-link mx-2">Home</a>
+      <a href="#" class="footer-link mx-2">About</a>
+      <a href="#" class="footer-link mx-2">Contact</a>
+      <a href="#" class="footer-link mx-2">Privacy Policy</a>
+      <a href="#" class="footer-link mx-2">Terms of Service</a>
+    </div>
+    <div class="d-flex align-items-center mb-2 mb-md-0">
+      <a href="https://instagram.com/" target="_blank" class="social-link mx-2" aria-label="Instagram">
+        <!-- Instagram SVG -->
+        <svg width="24" height="24" fill="currentColor" class="icon-instagram" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm5.25.75a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path></svg>
+      </a>
+      <a href="https://facebook.com/" target="_blank" class="social-link mx-2" aria-label="Facebook">
+        <!-- Facebook SVG -->
+        <svg width="24" height="24" fill="currentColor" class="icon-facebook" viewBox="0 0 24 24">
+          <path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/>
+        </svg>
+      </a>
+      <a href="https://linkedin.com/" target="_blank" class="social-link mx-2" aria-label="LinkedIn">
+        <!-- LinkedIn SVG -->
+        <svg width="24" height="24" fill="currentColor" class="icon-linkedin" viewBox="0 0 24 24">
+          <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm15.5 10.28h-3v-4.5c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.39v4.58h-3v-9h2.89v1.23h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.59v4.72z"/>
+        </svg>
+      </a>
+      <a href="https://x.com/" target="_blank" class="social-link mx-2" aria-label="X">
+        <!-- X (Twitter) SVG -->
+        <svg width="24" height="24" fill="currentColor" class="icon-x" viewBox="0 0 24 24">
+          <path d="M17.53 3H21.5l-7.19 8.21L22.5 21h-6.63l-5.19-6.21L2.5 21H.5l7.81-8.92L1.5 3h6.63l4.81 5.76L17.53 3zm-2.13 16h2.13l-6.19-7.39-1.41 1.61L15.4 19zM4.5 5l5.19 6.21L2.5 19h2.13l6.19-7.39 1.41-1.61L4.5 5z"/>
+        </svg>
+      </a>
+    </div>
+    <div class="text-muted small">
+      &copy; 2024 <strong>DinukaPrathi</strong>. All rights reserved.
+    </div>
+  </div>
+</footer>
+{% endblock %} 

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up - AOTMS{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-50">
+  <div class="bg-white rounded-lg shadow-lg flex w-full max-w-4xl overflow-hidden">
+    <!-- Left: Form -->
+    <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+      <h2 class="text-3xl font-bold mb-8">Sign up</h2>
+      <form method="POST" class="space-y-6">
+        {{ form.hidden_tag() }}
+        <div class="relative">
+          <span class="absolute left-3 top-3 text-gray-400">
+            <!-- User icon -->
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A9 9 0 1112 21a9 9 0 01-6.879-3.196z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </span>
+          {{ form.name(class="pl-10 pr-4 py-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400", placeholder="Your Name") }}
+        </div>
+        <div class="relative">
+          <span class="absolute left-3 top-3 text-gray-400">
+            <!-- Email icon -->
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12H8m8 0a4 4 0 11-8 0 4 4 0 018 0zm0 0v1a4 4 0 01-8 0v-1"/></svg>
+          </span>
+          {{ form.email(class="pl-10 pr-4 py-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400", placeholder="Your Email") }}
+        </div>
+        <div class="relative">
+          <span class="absolute left-3 top-3 text-gray-400">
+            <!-- Password icon -->
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm0 0v4m0 0h.01"/></svg>
+          </span>
+          {{ form.password(class="pl-10 pr-4 py-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400", placeholder="Password") }}
+        </div>
+        <div class="relative">
+          <span class="absolute left-3 top-3 text-gray-400">
+            <!-- Repeat password icon -->
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm0 0v4m0 0h.01"/></svg>
+          </span>
+          {{ form.confirm(class="pl-10 pr-4 py-2 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400", placeholder="Repeat your password") }}
+        </div>
+        <div class="flex items-center">
+          {{ form.terms(class="mr-2") }}
+          <label for="terms" class="text-sm">I agree all statements in <a href="#" class="text-blue-600 underline">Terms of service</a></label>
+        </div>
+        <button type="submit" class="w-full bg-blue-400 hover:bg-blue-600 text-white font-semibold py-2 rounded transition-colors duration-300">Register</button>
+      </form>
+      <div class="mt-6 text-center">
+        <a href="{{ url_for('login') }}" class="text-gray-600 underline">I am already member</a>
+      </div>
+    </div>
+    <!-- Right: Illustration -->
+    <div class="hidden md:flex w-1/2 items-center justify-center bg-gray-50">
+      <img src="https://cdn.pixabay.com/photo/2017/01/31/13/14/desk-2025540_1280.png" alt="Desk Illustration" class="max-w-xs rounded-lg shadow-md">
+    </div>
+  </div>
+</div>
+{% endblock %} 

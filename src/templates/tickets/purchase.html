@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+
+{% block title %}Purchase Tickets - AOTMS{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="text-center">Ticket Prices</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Ticket Type</th>
+                                <th>Regular Price (AUD)</th>
+                                <th>Concession/Kids Price</th>
+                                <th>Youth Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ground Pass (Week 1)</td>
+                                <td>$49</td>
+                                <td>$25</td>
+                                <td>$10</td>
+                            </tr>
+                            <tr>
+                                <td>Ground Pass (Middle Weekend)</td>
+                                <td>$69</td>
+                                <td>$30</td>
+                                <td>$10</td>
+                            </tr>
+                            <tr>
+                                <td>Ground Pass (Week 2)</td>
+                                <td>$139</td>
+                                <td>$70</td>
+                                <td>$5</td>
+                            </tr>
+                            <tr>
+                                <td>Rod Laver Arena</td>
+                                <td>$75</td>
+                                <td>$37.50</td>
+                                <td>$37.50</td>
+                            </tr>
+                            <tr>
+                                <td>Margaret Court Arena</td>
+                                <td>$65</td>
+                                <td>$32.50</td>
+                                <td>$32.50</td>
+                            </tr>
+                            <tr>
+                                <td>John Cain Arena</td>
+                                <td>$65</td>
+                                <td>$32.50</td>
+                                <td>$32.50</td>
+                            </tr>
+                            <tr>
+                                <td>AO Live</td>
+                                <td>$20</td>
+                                <td>$10</td>
+                                <td>$10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="alert alert-info mt-3">
+                    <h5 class="alert-heading">Price Categories:</h5>
+                    <ul class="mb-0">
+                        <li><strong>Regular:</strong> Adults (18+ years)</li>
+                        <li><strong>Concession:</strong> Seniors, Students</li>
+                        <li><strong>Youth:</strong> Ages 12-17 years</li>
+                        <li><strong>Kids:</strong> Ages 3-11 years</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Purchase Tickets</h3>
+            </div>
+            <div class="card-body">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-danger">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    
+                    <div class="mb-3">
+                        {{ form.ticket_type.label(class="form-label") }}
+                        {{ form.ticket_type(class="form-control", id="ticket-type") }}
+                        {% for error in form.ticket_type.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.category.label(class="form-label") }}
+                        {{ form.category(class="form-control", id="ticket-category") }}
+                        {% for error in form.category.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.session_date.label(class="form-label") }}
+                        {{ form.session_date(class="form-control", type="date", min="2026-01-18", max="2026-02-02", value="2026-01-18") }}
+                        <div class="form-text">Please select a date between January 18 and February 2, 2026</div>
+                        {% for error in form.session_date.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.quantity.label(class="form-label") }}
+                        {{ form.quantity(class="form-control", type="number", min="1", max="10") }}
+                        {% for error in form.quantity.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3" id="concession-card-group" style="display: none;">
+                        <label for="concession-card" class="form-label">Concession Card Number <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="concession-card" name="concession_card" required>
+                        <div class="form-text text-danger">Concession card number is required for concession tickets</div>
+                    </div>
+
+                    <div class="alert alert-info" id="price-info">
+                        Select a ticket type and category to see the price
+                    </div>
+
+                    <div class="d-grid">
+                        {{ form.submit(class="btn btn-primary") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-select option {
+        white-space: normal;
+        padding: 8px;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const ticketTypeSelect = document.getElementById('ticket-type');
+    const categorySelect = document.getElementById('ticket-category');
+    const quantityInput = document.getElementById('quantity');
+    const concessionCardGroup = document.getElementById('concession-card-group');
+    const concessionCardInput = document.getElementById('concession-card');
+    const priceInfo = document.getElementById('price-info');
+
+    const prices = {
+        'GROUND_PASS_WEEK1': {
+            'ADULT': 49,
+            'CONCESSION': 25,
+            'YOUTH': 10,
+            'KIDS': 25
+        },
+        'GROUND_PASS_MIDDLE': {
+            'ADULT': 69,
+            'CONCESSION': 30,
+            'YOUTH': 10,
+            'KIDS': 30
+        },
+        'GROUND_PASS_WEEK2': {
+            'ADULT': 139,
+            'CONCESSION': 70,
+            'YOUTH': 5,
+            'KIDS': 70
+        },
+        'ROD_LAVER': {
+            'ADULT': 75,
+            'CONCESSION': 37.50,
+            'YOUTH': 37.50,
+            'KIDS': 37.50
+        },
+        'MARGARET_COURT': {
+            'ADULT': 65,
+            'CONCESSION': 32.50,
+            'YOUTH': 32.50,
+            'KIDS': 32.50
+        },
+        'JOHN_CAIN': {
+            'ADULT': 65,
+            'CONCESSION': 32.50,
+            'YOUTH': 32.50,
+            'KIDS': 32.50
+        },
+        'AO_LIVE': {
+            'ADULT': 20,
+            'CONCESSION': 10,
+            'YOUTH': 10,
+            'KIDS': 10
+        }
+    };
+
+    function updatePrice() {
+        const ticketType = ticketTypeSelect.value;
+        const category = categorySelect.value;
+        const quantity = parseInt(quantityInput.value) || 1;
+        
+        if (ticketType && category && prices[ticketType] && prices[ticketType][category]) {
+            const price = prices[ticketType][category];
+            const total = price * quantity;
+            priceInfo.innerHTML = `
+                <strong>Price per ticket:</strong> $${price.toFixed(2)}<br>
+                <strong>Quantity:</strong> ${quantity}<br>
+                <strong>Total amount:</strong> $${total.toFixed(2)}
+            `;
+        } else {
+            priceInfo.innerHTML = 'Select a ticket type and category to see the price';
+        }
+    }
+
+    function updateConcessionCardVisibility() {
+        const category = categorySelect.value;
+        if (category === 'CONCESSION') {
+            concessionCardGroup.style.display = 'block';
+            concessionCardInput.required = true;
+        } else {
+            concessionCardGroup.style.display = 'none';
+            concessionCardInput.required = false;
+            concessionCardInput.value = ''; // Clear the value when hidden
+        }
+    }
+
+    ticketTypeSelect.addEventListener('change', updatePrice);
+    categorySelect.addEventListener('change', function() {
+        updatePrice();
+        updateConcessionCardVisibility();
+    });
+    quantityInput.addEventListener('change', updatePrice);
+
+    // Initial update
+    updatePrice();
+    updateConcessionCardVisibility();
+});
+</script>
+{% endblock %} 
