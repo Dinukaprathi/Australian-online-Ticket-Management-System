@@ -14,6 +14,11 @@ A Python-based ticket management system for the Australian Open 2026.
 
 ## Project Overview
 The AOTMS is designed to manage ticket sales for the Australian Open 2026, held from January 18 to February 2, 2026, at Melbourne Park. The system handles various ticket categories, pricing, and session management.
+![Screenshot 2025-06-01 091441](https://github.com/user-attachments/assets/d49fc4ce-41e6-4462-adef-d539017b6458)
+
+![Screenshot 2025-06-01 091224](https://github.com/user-attachments/assets/77796a62-5126-4822-a6ee-a31e46ccdb6b)
+![Screenshot 2025-06-01 091757](https://github.com/user-attachments/assets/f11e38a1-b4a0-4da8-9e42-eba16411d09b)
+![Screenshot 2025-06-01 095329](https://github.com/user-attachments/assets/d7179f70-8cfa-474c-9ee8-2b31b1530821)
 
 ## Features
 - User authentication and login system
@@ -57,8 +62,3 @@ aotms/
 │   └── test_session.py
 ├── requirements.txt
 └── README.md!'
-![Screenshot 2025-06-01 091441](https://github.com/user-attachments/assets/6023d4a9-c897-4a73-bdf6-1b45abc7d51a)
-![Screenshot 2025-06-01 091224](https://github.com/user-attachments/assets/6bf9f7ba-67a5-413b-89ba-9dfbf39ada87)
-![Screenshot 2025-06-01 091456](https://github.com/user-attachments/assets/57d10d3e-5073-4a5e-a61f-3e7b8192f828)
-![Screenshot 2025-06-01 094145](https://github.com/user-attachments/assets/44d41c1f-5ac2-49c4-b93e-82789989e539)
-![Screenshot 2025-06-01 095329](https://github.com/user-attachments/assets/18c316e1-e6f7-42f3-9730-467599e9fb4e)
