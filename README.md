@@ -56,14 +56,20 @@ aotms/
 │   ├── test_ticket.py
 │   └── test_session.py
 ├── requirements.txt
-└── README.md
+└── README.md!'
+[Screenshot 2025-06-01 091441](https://github.com/user-attachments/assets/c87ef1c5-1e55-40ab-b17a-f1c1e3445cca)
+
+
 ```
 
 ## Running Tests
 ```bash
-pytest tests/
+pytest tests/![Screenshot 2025-06-01 091456](https://github.com/user-attachments/assets/9cd10682-3c5c-4a56-b873-8158e1585020)
+
 ```
 
 ## License
 MIT License 
 >>>>>>> ef69cff (Initial commit)
+![Uploading Screenshot 2025-06-01 091456.png…]()
+![Screenshot 2025-06-01 093959](https://github.com/user-attachments/assets/7094202a-d072-4d07-864b-1c3d6babe9bf)
