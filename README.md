@@ -57,19 +57,8 @@ aotms/
 │   └── test_session.py
 ├── requirements.txt
 └── README.md!'
-[Screenshot 2025-06-01 091441](https://github.com/user-attachments/assets/c87ef1c5-1e55-40ab-b17a-f1c1e3445cca)
-
-
-```
-
-## Running Tests
-```bash
-pytest tests/![Screenshot 2025-06-01 091456](https://github.com/user-attachments/assets/9cd10682-3c5c-4a56-b873-8158e1585020)
-
-```
-
-## License
-MIT License 
->>>>>>> ef69cff (Initial commit)
-![Uploading Screenshot 2025-06-01 091456.png…]()
-![Screenshot 2025-06-01 093959](https://github.com/user-attachments/assets/7094202a-d072-4d07-864b-1c3d6babe9bf)
+![Screenshot 2025-06-01 091441](https://github.com/user-attachments/assets/6023d4a9-c897-4a73-bdf6-1b45abc7d51a)
+![Screenshot 2025-06-01 091224](https://github.com/user-attachments/assets/6bf9f7ba-67a5-413b-89ba-9dfbf39ada87)
+![Screenshot 2025-06-01 091456](https://github.com/user-attachments/assets/57d10d3e-5073-4a5e-a61f-3e7b8192f828)
+![Screenshot 2025-06-01 094145](https://github.com/user-attachments/assets/44d41c1f-5ac2-49c4-b93e-82789989e539)
+![Screenshot 2025-06-01 095329](https://github.com/user-attachments/assets/18c316e1-e6f7-42f3-9730-467599e9fb4e)
